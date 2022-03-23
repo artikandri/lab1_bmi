@@ -16,7 +16,7 @@ class BmiResult {
     return bmi;
   }
 
-  String get getIsMetric {
+  bool get getIsMetric {
     return isMetric;
   }
 

@@ -17,7 +17,7 @@ class Result extends StatelessWidget {
     return bmiResult.bmi;
   }
 
-  String _bmiIsMetric() {
+  bool _bmiIsMetric() {
     return bmiResult.isMetric;
   }
 
