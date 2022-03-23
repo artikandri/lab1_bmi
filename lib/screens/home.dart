@@ -291,8 +291,6 @@ class _HomeState extends State<Home> {
     isLoading = true;
     if (_key.currentState.validate()) {
       _key.currentState.save();
-      _weightController.clear();
-      _heightController.clear();
 
       setState(() {
         hasValidationError = false;
@@ -300,6 +298,9 @@ class _HomeState extends State<Home> {
 
         bmi = _getBmi();
         _addNewBmiEntry(height, weight, bmi);
+
+        _weightController.clear();
+        _heightController.clear();
       });
     } else {
       setState(() {
