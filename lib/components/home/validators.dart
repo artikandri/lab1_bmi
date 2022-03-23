@@ -1,7 +1,7 @@
 String validateIntegerAndDecimal(String value, String fieldName) {
   String pattern = r'^-?(?!.{12})\d+(?:\.\d+)?$';
   RegExp regExp = new RegExp(pattern);
-  value = value.replaceAll("[^\\d.]", "");
+  value = value.replaceAll("[^0-9.]", "");
   if (value.length == 0) {
     return "$fieldName is required";
   } else if (double.parse(value) <= 0) {
