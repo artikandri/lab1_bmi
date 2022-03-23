@@ -5,6 +5,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import "../data_templates/bmi_result.dart";
 import '../utils/unit_converter.dart';
 import '../components/home/validators.dart';
+import '../models/home.dart';
+
 import 'result.dart';
 
 enum UnitOptions { metric, imperial }
@@ -23,7 +25,7 @@ class _HomeState extends State<Home> {
 
   String weight = "";
   String height = "";
-  String bmi = "0.00";
+  String bmi = "";
 
   var validEntries = [];
   Color bmiTextColor = Colors.black;
@@ -118,7 +120,7 @@ class _HomeState extends State<Home> {
               style: TextStyle(
                 fontSize: 50.0,
                 fontWeight: FontWeight.bold,
-                color: _getBmiTextColor(bmi),
+                color: getBmiTextColor(bmi),
               ),
               recognizer: TapGestureRecognizer()
                 ..onTap = () {
@@ -136,69 +138,6 @@ class _HomeState extends State<Home> {
         ]))
       ],
     );
-  }
-
-  Color _getBmiTextColor(String bmi) {
-    int bmiCategory = _getBmiCategory(bmi);
-    Color color = Colors.black;
-    switch (bmiCategory) {
-      case 0:
-        color = Colors.yellow;
-        break;
-      case 1:
-        color = Colors.green;
-        break;
-      case 2:
-        color = Colors.deepOrange;
-        break;
-      case 3:
-        color = Colors.red[50];
-        break;
-      case 4:
-        color = Colors.red[300];
-        break;
-      case 5:
-        color = Colors.grey;
-        break;
-    }
-    return color;
-  }
-
-  String _getBmi() {
-    String originalHeight = _heightController.text.replaceAll("[^\\d.]", "");
-    String originalWeight = _weightController.text.replaceAll("[^\\d.]", "");
-
-    bool hasEnteredHeight = originalHeight.length > 0;
-    bool hasEnteredWeight = originalWeight.length > 0;
-
-    double score = 0;
-    if (hasEnteredHeight && hasEnteredWeight) {
-      double heightInMetricsMeter = isMetric ? double.parse(originalHeight) / 100 : feetToMeter(double.parse(originalHeight));
-      double weightInMetricsKilo = isMetric ? double.parse(originalWeight) : poundToKilogram(double.parse(originalWeight));
-
-      score = weightInMetricsKilo / (heightInMetricsMeter * heightInMetricsMeter);
-    }
-
-    return score.toStringAsFixed(2);
-  }
-
-  int _getBmiCategory(String bmi) {
-    // 0: Underweight, 1: Normal, 2: Overweight, 3: Obese, 4: Severely Obese, 5: Morbid Obese
-    double bmiInDouble = bmi.isEmpty ? 0 : double.parse(bmi.replaceAll("[^\\d.]", ""));
-    int result = 0;
-    if (bmiInDouble < 18.5)
-      result = 0;
-    else if (bmiInDouble >= 18.5 && bmiInDouble <= 24.9)
-      result = 1;
-    else if (bmiInDouble >= 25 && bmiInDouble <= 29.9)
-      result = 2;
-    else if (bmiInDouble >= 30 && bmiInDouble <= 34.9)
-      result = 3;
-    else if (bmiInDouble >= 35 && bmiInDouble <= 39.9)
-      result = 4;
-    else if (bmiInDouble >= 40) result = 5;
-
-    return result;
   }
 
   _updateHeight() {
@@ -253,18 +192,20 @@ class _HomeState extends State<Home> {
 
   _validateForm() {
     isLoading = true;
+
     if (_key.currentState.validate()) {
       _key.currentState.save();
+
+      String originalHeight = _heightController.text.replaceAll("[^\\d.]", "");
+      String originalWeight = _weightController.text.replaceAll("[^\\d.]", "");
 
       setState(() {
         hasValidationError = false;
         isLoading = false;
 
-        bmi = _getBmi();
+        bmi = getBmi(originalHeight, originalWeight, isMetric);
       });
-
       _addNewBmiEntry(height, weight, bmi);
-
       _weightController.clear();
       _heightController.clear();
     } else {
