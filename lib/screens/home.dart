@@ -34,9 +34,7 @@ class _HomeState extends State<Home> {
 
   Widget build(BuildContext context) {
     return WillPopScope(
-        onWillPop: () async {
-          _clearData();
-        },
+        onWillPop: _clearData,
         child: new Form(
           key: _key,
           autovalidate: hasValidationError,

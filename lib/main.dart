@@ -42,6 +42,7 @@ class _MainPageState extends State<MainPage> {
       ),
     );
   }
+}
 
 _onClickPopupMenuButton(int item, BuildContext context) {
   switch (item) {
@@ -56,4 +57,3 @@ _onClickPopupMenuButton(int item, BuildContext context) {
       break;
   }
 }
-
