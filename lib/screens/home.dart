@@ -125,10 +125,7 @@ class _HomeState extends State<Home> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const Result(),
-                        settings: RouteSettings(
-                          arguments: BmiResult(height, weight, bmi),
-                        ),
+                        builder: (BuildContext context) => new Result(new BmiResult(height, weight, bmi)),
                       ),
                     );
                     _clearData();
