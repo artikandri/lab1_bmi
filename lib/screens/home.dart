@@ -26,7 +26,7 @@ class _HomeState extends State<Home> {
 
   String weight = "";
   String height = "";
-  String bmi = "";
+  String bmi = "0.00";
 
   var validEntries = [];
   Color bmiTextColor = Colors.black;
