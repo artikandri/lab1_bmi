@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/gestures.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'authorship.dart';
@@ -130,25 +131,27 @@ class _HomeState extends State<Home> {
         ),
         new SizedBox(height: 30.0),
         new RichText(
-            text: TextSpan(
-                text: "${bmi}",
-                style: TextStyle(
-                  fontSize: 50.0,
-                  fontWeight: FontWeight.bold,
-                  color: _getBmiTextColor(double.parse(bmi)),
-                ),
-                recognizer: TapGestureRecognizer()
-                  ..onTap = () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const Result(),
-                        settings: RouteSettings(
-                          arguments: BmiResult(height, weight, bmi),
-                        ),
+            text: TextSpan(children: [
+          TextSpan(
+              text: "${bmi}",
+              style: TextStyle(
+                fontSize: 50.0,
+                fontWeight: FontWeight.bold,
+                color: _getBmiTextColor(double.parse(bmi)),
+              ),
+              recognizer: TapGestureRecognizer()
+                ..onTap = () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const Result(),
+                      settings: RouteSettings(
+                        arguments: BmiResult(height, weight, bmi),
                       ),
-                    );
-                  }))
+                    ),
+                  );
+                })
+        ]))
       ],
     );
   }
