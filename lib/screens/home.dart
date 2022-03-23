@@ -89,7 +89,7 @@ class _HomeState extends State<Home> {
             decoration: new InputDecoration(hintText: 'Height (${isMetric ? "cm" : "ft"})'),
             controller: _heightController,
             keyboardType: TextInputType.numberWithOptions(decimal: !isMetric, signed: false),
-            validator: _validateHeight,
+            validator: validateHeight,
             onSaved: (String val) {
               setState(() {
                 height = val;
@@ -99,7 +99,7 @@ class _HomeState extends State<Home> {
             decoration: new InputDecoration(hintText: 'Weight (${isMetric ? "kg" : "lbs"})'),
             controller: _weightController,
             keyboardType: TextInputType.numberWithOptions(decimal: !isMetric, signed: false),
-            validator: _validateWeight,
+            validator: validateWeight,
             onSaved: (String val) {
               setState(() {
                 weight = val;

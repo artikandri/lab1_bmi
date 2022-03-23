@@ -1,4 +1,4 @@
-String _validateHeight(String value) {
+String validateHeight(String value) {
   String pattern = r'^-?(?!.{12})\d+(?:\.\d+)?$';
   RegExp regExp = new RegExp(pattern);
 
@@ -14,7 +14,7 @@ String _validateHeight(String value) {
   return null;
 }
 
-String _validateWeight(String value) {
+String validateWeight(String value) {
   String pattern = r'^-?(?!.{12})\d+(?:\.\d+)?$';
   RegExp regExp = new RegExp(pattern);
   value = value.replaceAll("[^\\d.]", "");
