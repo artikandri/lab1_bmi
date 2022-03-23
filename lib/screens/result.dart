@@ -12,7 +12,7 @@ class _ResultState extends State<Result> {
   @override
   Widget build(BuildContext context) {
     final bmiResult = ModalRoute.of(context).settings.arguments as BmiResult;
-    print(bmiResult);
+    print(bmiResult.height);
 
     return Scaffold(
         appBar: AppBar(
