@@ -17,6 +17,10 @@ class Result extends StatelessWidget {
     return bmiResult.bmi;
   }
 
+  String _bmiIsMetric() {
+    return bmiResult.isMetric;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
