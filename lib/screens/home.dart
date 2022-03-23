@@ -141,15 +141,17 @@ class _HomeState extends State<Home> {
               ),
               recognizer: TapGestureRecognizer()
                 ..onTap = () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const Result(),
-                      settings: RouteSettings(
-                        arguments: BmiResult(height, weight, bmi),
+                  if (height && weight && !hasValidationError) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const Result(),
+                        settings: RouteSettings(
+                          arguments: BmiResult(height, weight, bmi),
+                        ),
                       ),
-                    ),
-                  );
+                    );
+                  }
                 })
         ]))
       ],
