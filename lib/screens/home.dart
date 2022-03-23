@@ -297,11 +297,12 @@ class _HomeState extends State<Home> {
         isLoading = false;
 
         bmi = _getBmi();
-        _addNewBmiEntry(height, weight, bmi);
-
-        _weightController.clear();
-        _heightController.clear();
       });
+
+      _addNewBmiEntry(height, weight, bmi);
+
+      _weightController.clear();
+      _heightController.clear();
     } else {
       setState(() {
         hasValidationError = true;
