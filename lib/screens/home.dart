@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'result.dart';
-import "../components/bmi_result.dart";
+import "../data_templates/bmi_result.dart";
 import '../utils/unit_converter.dart';
 
 enum UnitOptions { metric, imperial }

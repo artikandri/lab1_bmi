@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import "../components/bmi_result.dart";
+import "../data_templates/bmi_result.dart";
 
 class Result extends StatefulWidget {
   const Result({Key key}) : super(key: key);
