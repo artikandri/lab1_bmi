@@ -6,5 +6,6 @@ void main() => runApp(new MaterialApp(
       routes: <String, WidgetBuilder>{
         "/home": (BuildContext context) => new Home(),
         "/history": (BuildContext context) => new History(),
+        "/result": (BuildContext context) => new Result(),
       },
     ));

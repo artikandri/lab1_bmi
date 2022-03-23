@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'authorship.dart';
+import 'result.dart';
+
 import '../utils/unit_converter.dart';
 
 enum UnitOptions { metric, imperial }
@@ -11,6 +13,14 @@ enum UnitOptions { metric, imperial }
 class Home extends StatefulWidget {
   @override
   _HomeState createState() => _HomeState();
+}
+
+class BmiResult {
+  final String height;
+  final String weight;
+  final String bmi;
+
+  const BmiResult(this.height, this.weight, this.bmi);
 }
 
 class _HomeState extends State<Home> {
@@ -38,7 +48,7 @@ class _HomeState extends State<Home> {
           title: Text("BMI Calculator"),
           actions: <Widget>[
             PopupMenuButton<int>(
-                onSelected: (item) => onClickPopupMenuButton(item, context),
+                onSelected: (item) => _onClickPopupMenuButton(item, context),
                 itemBuilder: (context) => [
                       PopupMenuItem<int>(value: 0, child: Text("Author")),
                       PopupMenuItem<int>(value: 1, child: Text("History")),
@@ -104,7 +114,7 @@ class _HomeState extends State<Home> {
             decoration: new InputDecoration(hintText: 'Height (${isMetric ? "cm" : "ft"})'),
             controller: _heightController,
             keyboardType: TextInputType.numberWithOptions(decimal: !isMetric, signed: false),
-            validator: validateHeight,
+            validator: _validateHeight,
             onSaved: (String val) {
               setState(() {
                 height = val;
@@ -114,7 +124,7 @@ class _HomeState extends State<Home> {
             decoration: new InputDecoration(hintText: 'Weight (${isMetric ? "kg" : "lbs"})'),
             controller: _weightController,
             keyboardType: TextInputType.numberWithOptions(decimal: !isMetric, signed: false),
-            validator: validateWeight,
+            validator: _validateWeight,
             onSaved: (String val) {
               setState(() {
                 weight = val;
@@ -131,14 +141,14 @@ class _HomeState extends State<Home> {
           style: TextStyle(
             fontSize: 50.0,
             fontWeight: FontWeight.bold,
-            color: getBmiTextColor(double.parse(bmi)),
+            color: _getBmiTextColor(double.parse(bmi)),
           ),
         )
       ],
     );
   }
 
-  String validateHeight(String value) {
+  String _validateHeight(String value) {
     String pattern = r'^-?(?!.{12})\d+(?:\.\d+)?$';
     RegExp regExp = new RegExp(pattern);
 
@@ -153,9 +163,8 @@ class _HomeState extends State<Home> {
     return null;
   }
 
-  Color getBmiTextColor(double bmi) {
-    // 0: Underweight, 1: Normal, 2: Overweight, 3: Obese, 4: Severely Obese, 5: Morbid Obese
-    int bmiCategory = getBmiCategory(bmi);
+  Color _getBmiTextColor(double bmi) {
+    int bmiCategory = _getBmiCategory(bmi);
     Color color = Colors.black;
     switch (bmiCategory) {
       case 0:
@@ -180,7 +189,7 @@ class _HomeState extends State<Home> {
     return color;
   }
 
-  String validateWeight(String value) {
+  String _validateWeight(String value) {
     String pattern = r'^-?(?!.{12})\d+(?:\.\d+)?$';
     RegExp regExp = new RegExp(pattern);
     value = value.replaceAll("[^\\d.]", "");
@@ -194,7 +203,7 @@ class _HomeState extends State<Home> {
     return null;
   }
 
-  String getBmi() {
+  String _getBmi() {
     String originalHeight = _heightController.text.replaceAll("[^\\d.]", "");
     String originalWeight = _weightController.text.replaceAll("[^\\d.]", "");
 
@@ -212,9 +221,8 @@ class _HomeState extends State<Home> {
     return bmi.toStringAsFixed(2);
   }
 
-  int getBmiCategory(double bmi) {
+  int _getBmiCategory(double bmi) {
     // 0: Underweight, 1: Normal, 2: Overweight, 3: Obese, 4: Severely Obese, 5: Morbid Obese
-
     int result = 0;
     if (bmi < 18.5)
       result = 0;
@@ -277,8 +285,17 @@ class _HomeState extends State<Home> {
         hasValidationError = false;
         isLoading = false;
 
-        bmi = getBmi();
+        bmi = _getBmi();
         _addNewBmiEntry(height, weight, bmi);
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const Result(),
+            settings: RouteSettings(
+              arguments: BmiResult(height, weight, bmi),
+            ),
+          ),
+        );
       });
     } else {
       setState(() {
@@ -289,7 +306,7 @@ class _HomeState extends State<Home> {
   }
 }
 
-onClickPopupMenuButton(int item, BuildContext context) {
+_onClickPopupMenuButton(int item, BuildContext context) {
   switch (item) {
     case 0:
       Navigator.push(
