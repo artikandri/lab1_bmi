@@ -127,8 +127,9 @@ class _HomeState extends State<Home> {
                       MaterialPageRoute(
                         builder: (BuildContext context) => new Result(BmiResult(height, weight, bmi)),
                       ),
-                    );
-                    _clearData();
+                    ).then((value) {
+                      _clearData();
+                    });
                   }
                 })
         ]))
