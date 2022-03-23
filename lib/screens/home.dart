@@ -141,7 +141,7 @@ class _HomeState extends State<Home> {
               ),
               recognizer: TapGestureRecognizer()
                 ..onTap = () {
-                  if (height != "" && weight != "" && !hasValidationError) {
+                  if (!height.isEmpty && !weight.isEmpty && !hasValidationError) {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
