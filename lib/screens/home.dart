@@ -129,25 +129,26 @@ class _HomeState extends State<Home> {
           child: new Text('Count'),
         ),
         new SizedBox(height: 30.0),
-        new TextSpan(
-            text: "${bmi}",
-            style: TextStyle(
-              fontSize: 50.0,
-              fontWeight: FontWeight.bold,
-              color: _getBmiTextColor(double.parse(bmi)),
-            ),
-            recognizer: TapGestureRecognizer()
-              ..onTap = () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const Result(),
-                    settings: RouteSettings(
-                      arguments: BmiResult(height, weight, bmi),
-                    ),
-                  ),
-                );
-              })
+        new RichText(
+            text: new TextSpan(
+                text: "${bmi}",
+                style: TextStyle(
+                  fontSize: 50.0,
+                  fontWeight: FontWeight.bold,
+                  color: _getBmiTextColor(double.parse(bmi)),
+                ),
+                recognizer: TapGestureRecognizer()
+                  ..onTap = () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const Result(),
+                        settings: RouteSettings(
+                          arguments: BmiResult(height, weight, bmi),
+                        ),
+                      ),
+                    );
+                  }))
       ],
     );
   }
