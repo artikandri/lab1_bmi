@@ -1,29 +1,21 @@
-String validateHeight(String value) {
+String validateIntegerAndDecimal(String value, String fieldName) {
   String pattern = r'^-?(?!.{12})\d+(?:\.\d+)?$';
   RegExp regExp = new RegExp(pattern);
-
   value = value.replaceAll("[^\\d.]", "");
-
   if (value.length == 0) {
-    return "height is required";
+    return "$fieldName is required";
   } else if (double.parse(value) <= 0) {
-    return "height must be more than zero ";
+    return "$fieldName must be more than zero ";
   } else if (!regExp.hasMatch(value)) {
-    return "height must be digits";
+    return "$fieldName must be numbers";
   }
   return null;
 }
 
+String validateHeight(String value) {
+  return validateIntegerAndDecimal(value, "height");
+}
+
 String validateWeight(String value) {
-  String pattern = r'^-?(?!.{12})\d+(?:\.\d+)?$';
-  RegExp regExp = new RegExp(pattern);
-  value = value.replaceAll("[^\\d.]", "");
-  if (value.length == 0) {
-    return "weight is required";
-  } else if (double.parse(value) <= 0) {
-    return "weight must be more than zero ";
-  } else if (!regExp.hasMatch(value)) {
-    return "weight must be digits";
-  }
-  return null;
+  return validateIntegerAndDecimal(value, "weight");
 }
