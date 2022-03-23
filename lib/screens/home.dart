@@ -247,7 +247,7 @@ class _HomeState extends State<Home> {
 
       weight = "";
       height = "";
-      bmi = "0.00";
+      bmi = "";
     });
   }
 
