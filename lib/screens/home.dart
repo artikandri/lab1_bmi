@@ -291,6 +291,9 @@ class _HomeState extends State<Home> {
     isLoading = true;
     if (_key.currentState.validate()) {
       _key.currentState.save();
+      _weightController.clear();
+      _heightController.clear();
+
       setState(() {
         hasValidationError = false;
         isLoading = false;
