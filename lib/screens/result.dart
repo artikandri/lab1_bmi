@@ -6,9 +6,7 @@ class Result extends StatelessWidget {
   final BmiResult bmiResult;
 
   _bmiResultText() {
-    print(bmiResult);
-    print(bmiResult.toString());
-    return "$bmiResult[0].height";
+    print(bmiResult.getHeight());
   }
 
   @override
