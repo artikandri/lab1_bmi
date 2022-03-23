@@ -131,6 +131,7 @@ class _HomeState extends State<Home> {
                         ),
                       ),
                     );
+                    _clearData();
                   }
                 })
         ]))
