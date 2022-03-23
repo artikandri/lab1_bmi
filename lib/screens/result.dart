@@ -9,13 +9,15 @@ class Result extends StatefulWidget {
 }
 
 class _ResultState extends State<Result> {
+  BmiResult bmiResult;
+
   _bmiResultText() {
     return "$bmiResult.height";
   }
 
   @override
   Widget build(BuildContext context) {
-    final bmiResult = ModalRoute.of(context).settings.arguments as BmiResult;
+    bmiResult = ModalRoute.of(context).settings.arguments as BmiResult;
 
     return Scaffold(
         appBar: AppBar(
