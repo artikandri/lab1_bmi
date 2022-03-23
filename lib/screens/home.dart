@@ -15,14 +15,6 @@ class Home extends StatefulWidget {
   _HomeState createState() => _HomeState();
 }
 
-class BmiResult {
-  final String height;
-  final String weight;
-  final String bmi;
-
-  const BmiResult(this.height, this.weight, this.bmi);
-}
-
 class _HomeState extends State<Home> {
   GlobalKey<FormState> _key = new GlobalKey();
 
