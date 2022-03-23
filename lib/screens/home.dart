@@ -1,13 +1,9 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-import 'authorship.dart';
 import 'result.dart';
 import "../components/bmi_result.dart";
-
 import '../utils/unit_converter.dart';
 
 enum UnitOptions { metric, imperial }
@@ -34,39 +30,21 @@ class _HomeState extends State<Home> {
   final TextEditingController _weightController = TextEditingController();
   final TextEditingController _heightController = TextEditingController();
 
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      onWillPop: _clearData,
-      home: new Scaffold(
-        appBar: AppBar(
-          title: Text("BMI Calculator"),
-          actions: <Widget>[
-            PopupMenuButton<int>(
-                onSelected: (item) => _onClickPopupMenuButton(item, context),
-                itemBuilder: (context) => [
-                      PopupMenuItem<int>(value: 0, child: Text("Author")),
-                      PopupMenuItem<int>(value: 1, child: Text("History")),
-                    ])
-          ],
-        ),
-        body: new SingleChildScrollView(
-          child: new Container(
-            margin: new EdgeInsets.all(15.0),
-            child: new Form(
-              key: _key,
-              autovalidate: hasValidationError,
-              child: FormUI(),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-
   UnitOptions _option = UnitOptions.metric;
 
-  Widget FormUI() {
+  Widget build(BuildContext context) {
+    return WillPopScope(
+        onWillPop: () async {
+          _clearData();
+        },
+        child: new Form(
+          key: _key,
+          autovalidate: hasValidationError,
+          child: BmiForm(),
+        ));
+  }
+
+  Widget BmiForm() {
     return new Column(
       children: <Widget>[
         Column(
@@ -322,19 +300,5 @@ class _HomeState extends State<Home> {
         isLoading = false;
       });
     }
-  }
-}
-
-_onClickPopupMenuButton(int item, BuildContext context) {
-  switch (item) {
-    case 0:
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => const Authorship()),
-      );
-      break;
-    case 1:
-      Navigator.of(context).pushNamed("/history");
-      break;
   }
 }
