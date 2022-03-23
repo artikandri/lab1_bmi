@@ -184,7 +184,7 @@ class _HomeState extends State<Home> {
 
   int _getBmiCategory(String bmi) {
     // 0: Underweight, 1: Normal, 2: Overweight, 3: Obese, 4: Severely Obese, 5: Morbid Obese
-    double bmiInDouble = double.parse(bmi.replaceAll("[^\\d.]", ""));
+    double bmiInDouble = bmi.isEmpty ? 0 : double.parse(bmi.replaceAll("[^\\d.]", ""));
     int result = 0;
     if (bmiInDouble < 18.5)
       result = 0;
@@ -247,7 +247,7 @@ class _HomeState extends State<Home> {
 
       weight = "";
       height = "";
-      bmi = "";
+      bmi = "0.00";
     });
   }
 
