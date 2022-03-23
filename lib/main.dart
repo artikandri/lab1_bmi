@@ -7,7 +7,6 @@ void main() {
     routes: <String, WidgetBuilder>{
       "/MainPage": (BuildContext context) => new MainPage(),
       "/history": (BuildContext context) => new History(),
-      "/result": (BuildContext context) => new Result(),
     },
   ));
 }
