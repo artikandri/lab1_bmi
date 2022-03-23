@@ -5,7 +5,16 @@ class Result extends StatelessWidget {
   Result(this.bmiResult);
   final BmiResult bmiResult;
 
-  _bmiResultText() {
+  String _bmiHeight() {
+    return bmiResult.height;
+  }
+
+  String _bmiWeight() {
+    return bmiResult.weight;
+  }
+
+  String _bmiScore() {
+    return bmiResult.bmi;
   }
 
   @override
@@ -14,20 +23,13 @@ class Result extends StatelessWidget {
         appBar: AppBar(
           title: const Text('Result'),
         ),
-        body: Center(child: new RichText(
-            text: const TextSpan(children: [
-              TextSpan(
-                  text: 'The dog ',
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold, color: Colors.red)),
-              TextSpan(
-                  text: 'is a domesticated carnivore ',
-                  style: TextStyle(
-                      fontStyle: FontStyle.italic, color: Colors.purple)),
-              TextSpan(
-                  text: 'of the family Canidae.',
-                  style: TextStyle(color: Colors.green))
-            ]),
-          ));
+        body: Center(
+            child: new RichText(
+          text: const TextSpan(children: [
+            TextSpan(text: _bmiHeight(), style: TextStyle(fontWeight: FontWeight.bold, color: Colors.red)),
+            TextSpan(text: _bmiWeight(), style: TextStyle(fontStyle: FontStyle.italic, color: Colors.purple)),
+            TextSpan(text: _bmiScore(), style: TextStyle(color: Colors.green))
+          ]),
+        )));
   }
 }
