@@ -199,6 +199,9 @@ class _HomeState extends State<Home> {
       String originalHeight = _heightController.text.replaceAll("[^\\d.]", "");
       String originalWeight = _weightController.text.replaceAll("[^\\d.]", "");
 
+      originalHeight = originalHeight.isEmpty ? "0" : originalHeight;
+      originalWeight = originalWeight.isEmpty ? "0" : originalWeight;
+
       setState(() {
         hasValidationError = false;
         isLoading = false;
