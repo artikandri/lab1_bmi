@@ -129,14 +129,25 @@ class _HomeState extends State<Home> {
           child: new Text('Count'),
         ),
         new SizedBox(height: 30.0),
-        new Text(
-          "${bmi}",
-          style: TextStyle(
-            fontSize: 50.0,
-            fontWeight: FontWeight.bold,
-            color: _getBmiTextColor(double.parse(bmi)),
-          ),
-        )
+        new TextSpan(
+            text: "${bmi}",
+            style: TextStyle(
+              fontSize: 50.0,
+              fontWeight: FontWeight.bold,
+              color: _getBmiTextColor(double.parse(bmi)),
+            ),
+            recognizer: TapGestureRecognizer()
+              ..onTap = () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const Result(),
+                    settings: RouteSettings(
+                      arguments: BmiResult(height, weight, bmi),
+                    ),
+                  ),
+                );
+              })
       ],
     );
   }
@@ -280,15 +291,6 @@ class _HomeState extends State<Home> {
 
         bmi = _getBmi();
         _addNewBmiEntry(height, weight, bmi);
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => const Result(),
-            settings: RouteSettings(
-              arguments: BmiResult(height, weight, bmi),
-            ),
-          ),
-        );
       });
     } else {
       setState(() {
