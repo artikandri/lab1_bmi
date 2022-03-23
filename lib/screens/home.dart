@@ -37,6 +37,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      onWillPop: _clearData,
       home: new Scaffold(
         appBar: AppBar(
           title: Text("BMI Calculator"),
@@ -284,6 +285,18 @@ class _HomeState extends State<Home> {
         "bmi": bmi
       });
       prefs.setString('validEntries', json.encode(validEntries));
+    });
+  }
+
+  _clearData() {
+    setState(() {
+      bool hasValidationError = false;
+      bool isLoading = false;
+      bool isMetric = true;
+
+      String weight = "";
+      String height = "";
+      String bmi = "0.00";
     });
   }
 
