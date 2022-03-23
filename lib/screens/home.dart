@@ -35,12 +35,9 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return WillPopScope(
         onWillPop: () async {
-             _clearData();
-            return Future.value(true); //this line will help
-           },
-             _clearData();
-            return Future.value(true); //this line will help
-           },
+          _clearData();
+          return Future.value(true);
+        },
         child: new Form(
           key: _key,
           autovalidate: hasValidationError,
@@ -272,13 +269,13 @@ class _HomeState extends State<Home> {
 
   _clearData() {
     setState(() {
-       hasValidationError = false;
-       isLoading = false;
-       isMetric = true;
+      hasValidationError = false;
+      isLoading = false;
+      isMetric = true;
 
-       weight = "";
-       height = "";
-       bmi = "0.00";
+      weight = "";
+      height = "";
+      bmi = "0.00";
     });
   }
 
