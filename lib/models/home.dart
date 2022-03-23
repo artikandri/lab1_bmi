@@ -1,1 +1,1 @@
-import "../utils/bmi.dart";
+export "../utils/bmi.dart";
