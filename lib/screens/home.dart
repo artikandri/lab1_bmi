@@ -5,6 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'authorship.dart';
 import 'result.dart';
+import "../components/bmi_result.dart";
 
 import '../utils/unit_converter.dart';
 
