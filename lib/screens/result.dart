@@ -25,7 +25,7 @@ class Result extends StatelessWidget {
         ),
         body: Center(
             child: new RichText(
-          text: const TextSpan(children: [
+          text: TextSpan(children: [
             TextSpan(text: _bmiHeight(), style: TextStyle(fontWeight: FontWeight.bold, color: Colors.red)),
             TextSpan(text: _bmiWeight(), style: TextStyle(fontStyle: FontStyle.italic, color: Colors.purple)),
             TextSpan(text: _bmiScore(), style: TextStyle(color: Colors.green))
