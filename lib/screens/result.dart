@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import "../data_templates/bmi_result.dart";
+import "../utils/bmi.dart";
 
 class Result extends StatelessWidget {
   Result(this.bmiResult);
@@ -21,6 +22,11 @@ class Result extends StatelessWidget {
     return bmiResult.isMetric;
   }
 
+  String _bmiCategoryText() {
+    int bmiCategory = getBmiCategory(bmiResult.bmi);
+    return getBmiDescriptionFromCategory(bmiCategory);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,7 +38,8 @@ class Result extends StatelessWidget {
           text: TextSpan(children: [
             TextSpan(text: _bmiHeight(), style: TextStyle(fontWeight: FontWeight.bold, color: Colors.red)),
             TextSpan(text: _bmiWeight(), style: TextStyle(fontStyle: FontStyle.italic, color: Colors.purple)),
-            TextSpan(text: _bmiScore(), style: TextStyle(color: Colors.green))
+            TextSpan(text: _bmiScore(), style: TextStyle(color: Colors.green)),
+            TextSpan(text: _bmiCategoryText(), style: TextStyle(color: Colors.green))
           ]),
         )));
   }
