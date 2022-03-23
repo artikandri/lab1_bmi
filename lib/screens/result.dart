@@ -12,7 +12,7 @@ class _ResultState extends State<Result> {
   BmiResult bmiResult;
 
   _bmiResultText() {
-    return "$bmiResult.height";
+    return "$bmiResult[0].height";
   }
 
   @override
