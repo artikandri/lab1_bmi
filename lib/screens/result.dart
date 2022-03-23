@@ -12,11 +12,12 @@ class _ResultState extends State<Result> {
   @override
   Widget build(BuildContext context) {
     final bmiResult = ModalRoute.of(context).settings.arguments as BmiResult;
+    print(bmiResult);
 
     return Scaffold(
         appBar: AppBar(
           title: const Text('Result'),
         ),
-        body: Center(child: const Text("Result")));
+        body: Center(child: const Text("")));
   }
 }
