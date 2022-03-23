@@ -130,7 +130,7 @@ class _HomeState extends State<Home> {
         ),
         new SizedBox(height: 30.0),
         new RichText(
-            text: new TextSpan(
+            text: TextSpan(
                 text: "${bmi}",
                 style: TextStyle(
                   fontSize: 50.0,
