@@ -43,6 +43,8 @@ class _HomeState extends State<Home> {
         return Future.value(true);
       },
       child: Container(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
         child: Align(
             alignment: Alignment.centerLeft,
             child: new Form(
