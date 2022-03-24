@@ -6,6 +6,7 @@ import "../data_templates/bmi_result.dart";
 import '../utils/unit_converter.dart';
 import '../components/home/validators.dart';
 import '../models/home.dart';
+import "../styling.dart";
 
 import 'result.dart';
 
@@ -94,7 +95,7 @@ class _HomeState extends State<Home> {
             ),
           ],
         ),
-        new TextFormField(
+        TextFormField(
             decoration: new InputDecoration(labelText: 'Height (${isMetric ? "cm" : "ft"})', hintText: 'Enter your height'),
             controller: _heightController,
             keyboardType: TextInputType.numberWithOptions(decimal: !isMetric, signed: false),
@@ -104,7 +105,7 @@ class _HomeState extends State<Home> {
                 height = val;
               });
             }),
-        new TextFormField(
+        TextFormField(
             decoration: new InputDecoration(labelText: 'Weight (${isMetric ? "kg" : "lbs"})', hintText: 'Enter your weight'),
             controller: _weightController,
             keyboardType: TextInputType.numberWithOptions(decimal: !isMetric, signed: false),
@@ -114,25 +115,25 @@ class _HomeState extends State<Home> {
                 weight = val;
               });
             }),
-        new SizedBox(height: 15.0),
+        SizedBox(height: spacing * 2),
         ElevatedButton(
           style: ElevatedButton.styleFrom(
             primary: isLoading ? Colors.grey : Colors.blue,
-            minimumSize: const Size.fromHeight(50),
+            minimumSize: Size.fromHeight(spacing * 6),
           ),
           onPressed: isLoading ? null : _validateForm,
           child: const Text(
             'Count',
-            style: TextStyle(fontSize: 20),
+            style: TextStyle(fontSize: fontSize * 1.5),
           ),
         ),
-        new SizedBox(height: 30.0),
+        new SizedBox(height: spacing * 4),
         new RichText(
             text: TextSpan(children: [
           TextSpan(
               text: "${bmi}",
               style: TextStyle(
-                fontSize: 50.0,
+                fontSize: fontSize * 3,
                 fontWeight: FontWeight.bold,
                 color: getBmiTextColor(bmi),
               ),
