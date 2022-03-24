@@ -19,7 +19,7 @@ void main() {
 
       // Verify the author is available
       var author = find.text(Constants.authorship['author']);
-      expect(author, Constants.authorship['author']));
+      expect(author, Constants.authorship['author']);
 
       // Verify the title is available
       var title = find.text(Constants.authorship['title']);
