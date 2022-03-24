@@ -20,7 +20,7 @@ void main() {
       expect(appTitle, findsOneWidget);
 
       // verify author text is rendered
-      find.byWidgetPredicate((widget) => fromRichTextToPlainText(widget) == Constants.authorship['appTitle']);
+      expect(find.byWidgetPredicate((Widget widget) => widget is RichText && widget.text.toPlainText() == Constants.authorship['appTitle']), findsOneWidget);
     });
   });
 }
