@@ -29,10 +29,10 @@ class _HistoryState extends State<History> {
         itemBuilder: (BuildContext context, int index) {
           return Card(
             child: ListTile(
-                title: Text("BMI ${validEntries[index]['bmi']}"),
+                title: Text("BMI ${validEntries[index]['bmi']}", style: TextStyle(fontWeight: FontWeight.bold)),
                 subtitle: RichText(
                   text: TextSpan(
-                    text: "Height: ${_heightText(validEntries[index])} - Weight: ${_weightText(validEntries[index])}\n\n",
+                    text: "Height: ${_heightText(validEntries[index])} - Weight: ${_weightText(validEntries[index])}\n",
                     style: DefaultTextStyle.of(context).style,
                     children: [
                       TextSpan(text: '${_descriptionText(validEntries[index])}', style: TextStyle(fontWeight: FontWeight.bold)),
