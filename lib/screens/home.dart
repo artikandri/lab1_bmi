@@ -137,30 +137,31 @@ class _HomeState extends State<Home> {
             style: TextStyle(fontSize: appFontSize * 1),
           ),
         ),
-        new SizedBox(height: appSpacing * 4),
-        new RichText(
+        SizedBox(height: appSpacing * 4),
+        RichText(
+            textAlign: TextAlign.center,
             text: TextSpan(children: [
-          TextSpan(
-              text: "${bmi}",
-              style: TextStyle(
-                fontSize: appFontSize * 3,
-                fontWeight: FontWeight.bold,
-                color: getBmiTextColor(bmi),
-              ),
-              recognizer: TapGestureRecognizer()
-                ..onTap = () {
-                  if (!height.isEmpty && !weight.isEmpty && !hasValidationError) {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (BuildContext context) => new Result(BmiResult(height, weight, bmi, isMetric)),
-                      ),
-                    ).then((value) {
-                      _clearData();
-                    });
-                  }
-                })
-        ]))
+              TextSpan(
+                  text: "${bmi}",
+                  style: TextStyle(
+                    fontSize: appFontSize * 3,
+                    fontWeight: FontWeight.bold,
+                    color: getBmiTextColor(bmi),
+                  ),
+                  recognizer: TapGestureRecognizer()
+                    ..onTap = () {
+                      if (!height.isEmpty && !weight.isEmpty && !hasValidationError) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (BuildContext context) => new Result(BmiResult(height, weight, bmi, isMetric)),
+                          ),
+                        ).then((value) {
+                          _clearData();
+                        });
+                      }
+                    })
+            ]))
       ],
     );
   }
