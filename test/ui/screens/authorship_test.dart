@@ -16,18 +16,18 @@ void main() {
       await tester.pumpAndSettle();
 
       // Verify the app title is available
-      var inputWeight = find.text(Constants.authorship['appTitle']);
-      expect(inputWeight, findsOneWidget);
+      var appTitle = find.text(Constants.authorship['appTitle']);
+      expect(appTitle, findsOneWidget);
 
 
       // Verify the author is available
-      var inputWeight = find.text(Constants.authorship['author']);
-      expect(inputWeight, findsOneWidget);
+      var author = find.text(Constants.authorship['author']);
+      expect(author, findsOneWidget);
 
 
       // Verify the title is available
-      var inputWeight = find.text(Constants.authorship['title']);
-      expect(inputWeight, findsOneWidget);
+      var title = find.text(Constants.authorship['title']);
+      expect(title, findsOneWidget);
 
     });
   });
