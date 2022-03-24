@@ -110,7 +110,7 @@ class _HomeState extends State<Home> {
         new SizedBox(height: 15.0),
         ElevatedButton(
           style: ElevatedButton.styleFrom(
-            primary: Colors.grey,
+            primary: Colors.blue,
             minimumSize: const Size.fromHeight(50), // NEW
           ),
           onPressed: isLoading ? null : _validateForm,
