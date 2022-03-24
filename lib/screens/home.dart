@@ -103,6 +103,7 @@ class _HomeState extends State<Home> {
         RichText(
           text: TextSpan(text: 'Measurements', style: (TextStyle(color: Theme.of(context).textTheme.bodyText1.color, fontSize: appFontSize))),
         ),
+        SizedBox(height: appSpacing * 2),
         TextFormField(
             decoration: new InputDecoration(labelText: 'Height (${isMetric ? "cm" : "ft"})', hintText: 'Enter your height'),
             controller: _heightController,
