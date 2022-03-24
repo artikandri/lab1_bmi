@@ -9,21 +9,21 @@ import 'package:lab1_bmi/constants.dart';
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
-  group('all text is rendered correctly', () {
-    testWidgets('', (WidgetTester tester) async {
+  group('authorship.dart', () {
+    testWidgets('all text is rendered correctly', (WidgetTester tester) async {
       await tester.pumpAndSettle();
 
       // Verify the app title is available
       var appTitle = find.text(Constants.authorship['appTitle']);
-      expect(appTitle, findsOneWidget);
+      expect(appTitle, Constants.authorship['appTitle']);
 
       // Verify the author is available
       var author = find.text(Constants.authorship['author']);
-      expect(author, findsOneWidget);
+      expect(author, Constants.authorship['author']));
 
       // Verify the title is available
       var title = find.text(Constants.authorship['title']);
-      expect(title, findsOneWidget);
+      expect(title, Constants.authorship['title']);
     });
   });
 }
