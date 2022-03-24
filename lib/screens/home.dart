@@ -60,7 +60,8 @@ class _HomeState extends State<Home> {
               text: TextSpan(
                   text: 'Measurement unit',
                   style: (TextStyle(
-                    fontSize: fontSize * .75,
+                    color: Theme.of(context).primarySwatch,
+                    fontSize: fontSize,
                   ))),
             ),
             SizedBox(height: spacing * 2),
