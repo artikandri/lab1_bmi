@@ -7,19 +7,17 @@ class Result extends StatelessWidget {
   final BmiResult bmiResult;
 
   String _bmiHeight() {
-    return bmiResult.height;
+    String unit = bmiResult.isMetric ? "cm" : "ft";
+    return "${bmiResult.height} ${unit}";
   }
 
   String _bmiWeight() {
-    return bmiResult.weight;
+    String unit = bmiResult.isMetric ? "kg" : "lbs";
+    return "${bmiResult.weight} ${unit}";
   }
 
   String _bmiScore() {
     return bmiResult.bmi;
-  }
-
-  bool _bmiIsMetric() {
-    return bmiResult.isMetric;
   }
 
   String _bmiCategoryText() {
@@ -38,7 +36,7 @@ class Result extends StatelessWidget {
           text: TextSpan(children: [
             TextSpan(text: "${_bmiScore()}\n", style: TextStyle(fontWeight: FontWeight.bold, color: Colors.red)),
             TextSpan(text: "You are ${_bmiCategoryText()}\n", style: TextStyle(fontStyle: FontStyle.italic, color: Colors.purple)),
-            TextSpan(text: "Height: ${_bmiHeight()} and Weight: ${_bmiHeight()}\n", style: TextStyle(color: Colors.green)),
+            TextSpan(text: "Height: ${_bmiHeight()} and Weight: ${_bmiWeight()}\n", style: TextStyle(color: Colors.green)),
           ]),
         )));
   }
