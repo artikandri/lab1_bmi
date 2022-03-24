@@ -16,7 +16,7 @@ class Authorship extends StatelessWidget {
               child: RichText(
             textAlign: TextAlign.center,
             text: TextSpan(children: [
-              TextSpan(text: "Lab 1 Task\n", style: TextStyle(fontWeight: FontWeight.bold, fontSize: appFontSize * 2, color: defaultBodyTextColor)),
+              TextSpan(text: "Lab 1 Task\n\n", style: TextStyle(fontWeight: FontWeight.bold, fontSize: appFontSize * 2, color: defaultBodyTextColor)),
               TextSpan(text: "Argi Candri - 268894", style: TextStyle(fontSize: appFontSize * 1.5, color: defaultBodyTextColor)),
             ]),
           ))
