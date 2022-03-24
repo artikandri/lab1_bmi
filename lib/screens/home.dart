@@ -60,8 +60,6 @@ class _HomeState extends State<Home> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             RichText(
               text: TextSpan(text: 'Measurement unit', style: (TextStyle(color: Theme.of(context).textTheme.bodyText1.color, fontSize: appFontSize))),
