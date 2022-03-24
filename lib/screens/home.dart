@@ -108,9 +108,16 @@ class _HomeState extends State<Home> {
               });
             }),
         new SizedBox(height: 15.0),
-        new RaisedButton(
+        ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            primary: Colors.black,
+            minimumSize: const Size.fromHeight(50), // NEW
+          ),
           onPressed: isLoading ? null : _validateForm,
-          child: new Text('Count'),
+          child: const Text(
+            'Count',
+            style: TextStyle(fontSize: 24),
+          ),
         ),
         new SizedBox(height: 30.0),
         new RichText(
