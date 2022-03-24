@@ -59,12 +59,12 @@ class _HomeState extends State<Home> {
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
+        RichText(
+          text: TextSpan(text: 'Measurement unit', style: (TextStyle(color: Theme.of(context).textTheme.bodyText1.color, fontSize: appFontSize))),
+        ),
+        SizedBox(height: appSpacing * 2),
         Column(
           children: <Widget>[
-            RichText(
-              text: TextSpan(text: 'Measurement unit', style: (TextStyle(color: Theme.of(context).textTheme.bodyText1.color, fontSize: appFontSize))),
-            ),
-            SizedBox(height: appSpacing * 2),
             ListTile(
               title: const Text('Metric'),
               leading: Radio<UnitOptions>(
