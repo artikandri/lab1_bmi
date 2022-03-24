@@ -138,31 +138,32 @@ class _HomeState extends State<Home> {
           ),
         ),
         SizedBox(height: appSpacing * 4),
-        RichText(
-            softWrap: true,
-            textAlign: TextAlign.justify,
-            text: TextSpan(children: [
-              TextSpan(
-                  text: "${bmi}",
-                  style: TextStyle(
-                    fontSize: appFontSize * 3,
-                    fontWeight: FontWeight.bold,
-                    color: getBmiTextColor(bmi),
-                  ),
-                  recognizer: TapGestureRecognizer()
-                    ..onTap = () {
-                      if (!height.isEmpty && !weight.isEmpty && !hasValidationError) {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (BuildContext context) => new Result(BmiResult(height, weight, bmi, isMetric)),
-                          ),
-                        ).then((value) {
-                          _clearData();
-                        });
-                      }
-                    })
-            ]))
+        Center(
+            child: RichText(
+                softWrap: true,
+                textAlign: TextAlign.justify,
+                text: TextSpan(children: [
+                  TextSpan(
+                      text: "${bmi}",
+                      style: TextStyle(
+                        fontSize: appFontSize * 3,
+                        fontWeight: FontWeight.bold,
+                        color: getBmiTextColor(bmi),
+                      ),
+                      recognizer: TapGestureRecognizer()
+                        ..onTap = () {
+                          if (!height.isEmpty && !weight.isEmpty && !hasValidationError) {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (BuildContext context) => new Result(BmiResult(height, weight, bmi, isMetric)),
+                              ),
+                            ).then((value) {
+                              _clearData();
+                            });
+                          }
+                        })
+                ]))),
       ],
     );
   }
