@@ -21,9 +21,6 @@ void main() {
 
       // verify title  is rendered
       expect(find.byWidgetPredicate((Widget widget) => widget is RichText && widget.text.toPlainText() == Constants.authorship['appTitle']), findsOneWidget);
-
-      // verify author is rendered
-      expect(find.byWidgetPredicate((Widget widget) => widget is RichText && widget.text.toPlainText() == Constants.authorship['author']), findsOneWidget);
     });
   });
 }
