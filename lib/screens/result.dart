@@ -42,8 +42,8 @@ class Result extends StatelessWidget {
             textAlign: TextAlign.center,
             text: TextSpan(children: [
               TextSpan(text: "${_bmiScore()}\n", style: TextStyle(fontWeight: FontWeight.bold, fontSize: appFontSize * 3, color: _bmiTextColor())),
-              TextSpan(text: "You are ${_bmiCategoryText()}\n", style: TextStyle(fontSize: appFontSize * 2, color: Theme.of(context).textTheme.bodyText1.color)),
-              TextSpan(text: "Height: ${_bmiHeight()} and Weight: ${_bmiWeight()}\n", style: TextStyle(color: Theme.of(context).textTheme.bodyText1.color)),
+              TextSpan(text: "You are ${_bmiCategoryText()}\n\n", style: TextStyle(fontSize: appFontSize * 2, color: Theme.of(context).textTheme.bodyText1.color)),
+              TextSpan(text: "Height: ${_bmiHeight()} and Weight: ${_bmiWeight()}\n", style: TextStyle(fontSize: appFontSize * 1.5, color: Theme.of(context).textTheme.bodyText1.color)),
             ]),
           ))
         ]));
