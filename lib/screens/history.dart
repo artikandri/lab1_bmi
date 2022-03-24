@@ -27,7 +27,7 @@ class _HistoryState extends State<History> {
           return Card(
             child: ListTile(
               title: Text("BMI ${validEntries[index]['bmi']}"),
-              subtitle: Text("Height: $validEntries[index]['height] - Weight: $validEntries[index]['weight']"),
+              subtitle: Text("Height: $validEntries[index]['height'] - Weight: $validEntries[index]['weight']"),
             ),
           );
         },
