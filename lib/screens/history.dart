@@ -32,9 +32,9 @@ class _HistoryState extends State<History> {
                 title: Text("BMI ${validEntries[index]['bmi']}"),
                 subtitle: RichText(
                   text: TextSpan(
-                    text: "Height: ${_heightText(validEntries[index])} - Weight: ${_weightText(validEntries[index])}",
+                    text: "Height: ${_heightText(validEntries[index])} - Weight: ${_weightText(validEntries[index])}\n\n",
                     style: DefaultTextStyle.of(context).style,
-                    children: <TextSpan>[
+                    children: [
                       TextSpan(text: '${_descriptionText(validEntries[index])}', style: TextStyle(fontWeight: FontWeight.bold)),
                     ],
                   ),
