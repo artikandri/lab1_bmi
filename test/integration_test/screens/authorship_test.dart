@@ -12,20 +12,11 @@ void main() {
       await tester.pumpWidget(MaterialApp(
         home: Authorship(),
       ));
-
       await tester.pumpAndSettle();
 
       // Verify the app title is available
       var appTitle = find.text(Constants.authorship['appTitle']);
       expect(appTitle, findsOneWidget);
-
-      // Verify the author is available
-      var author = find.text(Constants.authorship['author']);
-      expect(author, findsOneWidget);
-
-      // Verify the title is available
-      var title = find.text(Constants.authorship['title']);
-      expect(title, findsOneWidget);
     });
   });
 }
