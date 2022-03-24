@@ -33,7 +33,7 @@ class _MainPageState extends State<MainPage> {
                     ])
           ],
         ),
-        body: new SizedBox.expand(
+        body: new SingleChildScrollView(
           child: new Container(
             margin: new EdgeInsets.all(appSpacing * 2),
             child: Home(),
