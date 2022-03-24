@@ -56,6 +56,8 @@ class _HomeState extends State<Home> {
 
   Widget BmiForm() {
     return new Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Column(
           mainAxisAlignment: MainAxisAlignment.start,
