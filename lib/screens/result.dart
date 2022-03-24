@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import "../data_templates/bmi_result.dart";
 import "../utils/bmi.dart";
+import "../styling.dart";
 
 class Result extends StatelessWidget {
   Result(this.bmiResult);
@@ -20,6 +21,10 @@ class Result extends StatelessWidget {
     return bmiResult.bmi;
   }
 
+  Color _bmiTextColor() {
+    return getBmiTextColor(bmiResult.bmi);
+  }
+
   String _bmiCategoryText() {
     int bmiCategory = getBmiCategory(bmiResult.bmi);
     return getBmiDescriptionFromCategory(bmiCategory);
@@ -34,9 +39,9 @@ class Result extends StatelessWidget {
         body: Center(
             child: new RichText(
           text: TextSpan(children: [
-            TextSpan(text: "${_bmiScore()}\n", style: TextStyle(fontWeight: FontWeight.bold, color: Colors.red)),
-            TextSpan(text: "You are ${_bmiCategoryText()}\n", style: TextStyle(fontStyle: FontStyle.italic, color: Colors.purple)),
-            TextSpan(text: "Height: ${_bmiHeight()} and Weight: ${_bmiWeight()}\n", style: TextStyle(color: Colors.green)),
+            TextSpan(text: "${_bmiScore()}\n", style: TextStyle(fontWeight: FontWeight.bold, fontSize: appFontSize * 3, color: _bmiTextColor())),
+            TextSpan(text: "You are ${_bmiCategoryText()}\n", style: TextStyle(fontSize: appFontSize * 2)),
+            TextSpan(text: "Height: ${_bmiHeight()} and Weight: ${_bmiWeight()}\n"),
           ]),
         )));
   }
