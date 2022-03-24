@@ -139,7 +139,8 @@ class _HomeState extends State<Home> {
         ),
         SizedBox(height: appSpacing * 4),
         RichText(
-            textAlign: TextAlign.center,
+            softWrap: true,
+            textAlign: TextAlign.justify,
             text: TextSpan(children: [
               TextSpan(
                   text: "${bmi}",
