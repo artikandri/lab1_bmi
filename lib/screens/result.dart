@@ -36,10 +36,9 @@ class Result extends StatelessWidget {
         body: Center(
             child: new RichText(
           text: TextSpan(children: [
-            TextSpan(text: _bmiHeight(), style: TextStyle(fontWeight: FontWeight.bold, color: Colors.red)),
-            TextSpan(text: _bmiWeight(), style: TextStyle(fontStyle: FontStyle.italic, color: Colors.purple)),
-            TextSpan(text: _bmiScore(), style: TextStyle(color: Colors.green)),
-            TextSpan(text: _bmiCategoryText(), style: TextStyle(color: Colors.green))
+            TextSpan(text: "${_bmiScore()}\n", style: TextStyle(fontWeight: FontWeight.bold, color: Colors.red)),
+            TextSpan(text: "You are ${_bmiCategoryText()}\n", style: TextStyle(fontStyle: FontStyle.italic, color: Colors.purple)),
+            TextSpan(text: "Height: ${_bmiHeight()} and Weight: ${_bmiHeight()}\n", style: TextStyle(color: Colors.green)),
           ]),
         )));
   }
