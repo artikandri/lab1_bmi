@@ -17,6 +17,9 @@ void main() {
       // Verify the app title is available
       var appTitle = find.text(Constants.authorship['appTitle']);
       expect(appTitle, findsOneWidget);
+
+      final richTextWidget = tester.element(richTextFinder).widget as RichText;
+      print(richTextWidget.text.children);
     });
   });
 }
