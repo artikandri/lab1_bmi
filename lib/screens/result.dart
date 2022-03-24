@@ -36,13 +36,14 @@ class Result extends StatelessWidget {
         appBar: AppBar(
           title: const Text('Result'),
         ),
-        body: Center(
-            child: new RichText(
-          text: TextSpan(children: [
-            TextSpan(text: "${_bmiScore()}\n", style: TextStyle(fontWeight: FontWeight.bold, fontSize: appFontSize * 3, color: _bmiTextColor())),
-            TextSpan(text: "You are ${_bmiCategoryText()}\n", style: TextStyle(fontSize: appFontSize * 2)),
-            TextSpan(text: "Height: ${_bmiHeight()} and Weight: ${_bmiWeight()}\n"),
-          ]),
-        )));
+        body: Column(mainAxisAlignment: MainAxisAlignment.start, crossAxisAlignment: CrossAxisAlignment.start, children: [
+          RichText(
+            text: TextSpan(children: [
+              TextSpan(text: "${_bmiScore()}\n", style: TextStyle(fontWeight: FontWeight.bold, fontSize: appFontSize * 3, color: _bmiTextColor())),
+              TextSpan(text: "You are ${_bmiCategoryText()}\n", style: TextStyle(fontSize: appFontSize * 2, color: Theme.of(context).textTheme.bodyText1.color)),
+              TextSpan(text: "Height: ${_bmiHeight()} and Weight: ${_bmiWeight()}\n", style: TextStyle(color: Theme.of(context).textTheme.bodyText1.color)),
+            ]),
+          )
+        ]));
   }
 }
