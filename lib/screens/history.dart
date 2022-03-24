@@ -22,7 +22,7 @@ class _HistoryState extends State<History> {
       body: ListView.separated(
         itemCount: validEntries.length,
         shrinkWrap: true,
-        padding: EdgeInsets.all(5),
+        padding: EdgeInsets.all(appSpacing * 2),
         scrollDirection: Axis.vertical,
         separatorBuilder: (BuildContext, index) {
           return Divider(height: 1);
