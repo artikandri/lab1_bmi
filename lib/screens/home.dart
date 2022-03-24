@@ -175,7 +175,7 @@ class _HomeState extends State<Home> {
       double newHeight = isMetric ? feetToCentimeter(oldHeight) : centimeterToFeet(oldHeight);
 
       _heightController.value = _heightController.value.copyWith(
-        text: newHeight.toStringAsFixed(2),
+        text: isMetric ? newHeight.round().toString() : newHeight.toStringAsFixed(2),
         selection: TextSelection.collapsed(offset: newHeight.toStringAsFixed(2).length),
       );
     }
@@ -188,7 +188,7 @@ class _HomeState extends State<Home> {
       double newWeight = isMetric ? poundToKilogram(oldWeight) : kilogramToPound(oldWeight);
 
       _weightController.value = _weightController.value.copyWith(
-        text: newWeight.toStringAsFixed(2),
+        text: isMetric ? newWeight.round().toString() : newWeight.toStringAsFixed(2),
         selection: TextSelection.collapsed(offset: newWeight.toStringAsFixed(2).length),
       );
     }
