@@ -58,6 +58,7 @@ class _HomeState extends State<Home> {
     return new Column(
       children: <Widget>[
         Column(
+          mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             RichText(
