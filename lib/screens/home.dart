@@ -88,7 +88,7 @@ class _HomeState extends State<Home> {
           ],
         ),
         new TextFormField(
-            decoration: new InputDecoration(hintText: 'Height (${isMetric ? "cm" : "ft"})'),
+            decoration: new InputDecoration(labelText: 'Height (${isMetric ? "cm" : "ft"})', hintText: 'Enter your height'),
             controller: _heightController,
             keyboardType: TextInputType.numberWithOptions(decimal: !isMetric, signed: false),
             validator: validateHeight,
@@ -98,7 +98,7 @@ class _HomeState extends State<Home> {
               });
             }),
         new TextFormField(
-            decoration: new InputDecoration(hintText: 'Weight (${isMetric ? "kg" : "lbs"})'),
+            decoration: new InputDecoration(labelText: 'Weight (${isMetric ? "kg" : "lbs"})', hintText: 'Enter your weight'),
             controller: _weightController,
             keyboardType: TextInputType.numberWithOptions(decimal: !isMetric, signed: false),
             validator: validateWeight,
