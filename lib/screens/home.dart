@@ -53,7 +53,12 @@ class _HomeState extends State<Home> {
       children: <Widget>[
         Column(
           children: <Widget>[
-            Text(text: "Unit"),
+            RichText(
+              text: TextSpan(
+                text: 'Unit ',
+                style: DefaultTextStyle.of(context).style,
+              ),
+            ),
             ListTile(
               title: const Text('Metric'),
               leading: Radio<UnitOptions>(
