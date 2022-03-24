@@ -105,6 +105,7 @@ class _HomeState extends State<Home> {
                 height = val;
               });
             }),
+        SizedBox(height: spacing * 2),
         TextFormField(
             decoration: new InputDecoration(labelText: 'Weight (${isMetric ? "kg" : "lbs"})', hintText: 'Enter your weight'),
             controller: _weightController,
@@ -124,7 +125,7 @@ class _HomeState extends State<Home> {
           onPressed: isLoading ? null : _validateForm,
           child: Text(
             'Count',
-            style: TextStyle(fontSize: fontSize * 1.5),
+            style: TextStyle(fontSize: fontSize * 1),
           ),
         ),
         new SizedBox(height: spacing * 4),
