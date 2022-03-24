@@ -172,6 +172,7 @@ class _HomeState extends State<Home> {
       validEntries.add({
         "height": height,
         "weight": weight,
+        "isMetric": isMetric,
         "bmi": bmi
       });
       prefs.setString('validEntries', json.encode(validEntries));
@@ -182,8 +183,8 @@ class _HomeState extends State<Home> {
     setState(() {
       hasValidationError = false;
       isLoading = false;
-      isMetric = true;
 
+      isMetric = true;
       weight = "";
       height = "";
       bmi = "";
