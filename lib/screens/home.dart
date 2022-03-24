@@ -122,7 +122,7 @@ class _HomeState extends State<Home> {
             minimumSize: Size.fromHeight(spacing * 6),
           ),
           onPressed: isLoading ? null : _validateForm,
-          child: const Text(
+          child: Text(
             'Count',
             style: TextStyle(fontSize: fontSize * 1.5),
           ),
