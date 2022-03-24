@@ -44,7 +44,7 @@ class _HomeState extends State<Home> {
       },
       child: Container(
         child: Align(
-            alignment: Alignment.centerRight,
+            alignment: Alignment.centerLeft,
             child: new Form(
               key: _key,
               autovalidate: hasValidationError,
