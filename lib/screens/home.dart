@@ -58,9 +58,10 @@ class _HomeState extends State<Home> {
             RichText(
               textAlign: TextAlign.left,
               text: TextSpan(
-                text: 'Measurement unit',
-                style: DefaultTextStyle.of(context).style,
-              ),
+                  text: 'Measurement unit',
+                  style: (TextStyle(
+                    fontSize: fontSize,
+                  ))),
             ),
             ListTile(
               title: const Text('Metric'),
