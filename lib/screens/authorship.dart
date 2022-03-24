@@ -6,6 +6,7 @@ class Authorship extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Color defaultBodyTextColor = Theme.of(context).textTheme.bodyText1.color;
     return Scaffold(
         appBar: AppBar(
           title: const Text('Author'),
@@ -15,8 +16,8 @@ class Authorship extends StatelessWidget {
               child: RichText(
             textAlign: TextAlign.center,
             text: TextSpan(children: [
-              TextSpan(text: "Lab 1 Task\n", style: TextStyle(fontWeight: FontWeight.bold, fontSize: appFontSize * 2, color: _bmiTextColor())),
-              TextSpan(text: "Argi Candri - 268894", style: TextStyle(fontSize: appFontSize * 1.5, color: Theme.of(context).textTheme.bodyText1.color)),
+              TextSpan(text: "Lab 1 Task\n", style: TextStyle(fontWeight: FontWeight.bold, fontSize: appFontSize * 2, color: defaultBodyTextColor)),
+              TextSpan(text: "Argi Candri - 268894", style: TextStyle(fontSize: appFontSize * 1.5, color: defaultBodyTextColor)),
             ]),
           ))
         ]));
