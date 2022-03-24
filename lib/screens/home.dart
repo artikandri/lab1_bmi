@@ -38,22 +38,27 @@ class _HomeState extends State<Home> {
 
   Widget build(BuildContext context) {
     return WillPopScope(
-        onWillPop: () async {
-          _clearData();
-          return Future.value(true);
-        },
-        child: new Form(
-          key: _key,
-          autovalidate: hasValidationError,
-          child: BmiForm(),
-        ));
+      onWillPop: () async {
+        _clearData();
+        return Future.value(true);
+      },
+      child: Container(
+        child: Align(
+            alignment: Alignment.centerRight,
+            child: new Form(
+              key: _key,
+              autovalidate: hasValidationError,
+              child: BmiForm(),
+            )),
+      ),
+    );
   }
 
   Widget BmiForm() {
     return new Column(
       children: <Widget>[
         Column(
-          crossAxisAlignment: CrossAxisAlignment.baseline,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             RichText(
               text: TextSpan(text: 'Measurement unit', style: (TextStyle(color: Theme.of(context).textTheme.bodyText1.color, fontSize: appFontSize))),
