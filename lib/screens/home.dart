@@ -51,7 +51,7 @@ class _HomeState extends State<Home> {
   Widget BmiForm() {
     return new Column(
       children: <Widget>[
-        Column(
+        Row(
           children: <Widget>[
             RichText(
               textAlign: TextAlign.left,
