@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import "../styling.dart";
 
 class Authorship extends StatelessWidget {
   const Authorship({Key key}) : super(key: key);
@@ -6,18 +7,18 @@ class Authorship extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Author'),
-      ),
-      body: Center(
-          child: RichText(
-        text: TextSpan(
-          style: TextStyle(color: Colors.black, fontSize: 18.0),
-          children: <TextSpan>[
-            TextSpan(text: 'Lab 1 Task - Argi Candri - 268894')
-          ],
+        appBar: AppBar(
+          title: const Text('Author'),
         ),
-      )),
-    );
+        body: Column(mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.center, children: [
+          Center(
+              child: RichText(
+            textAlign: TextAlign.center,
+            text: TextSpan(children: [
+              TextSpan(text: "Lab 1 Task\n", style: TextStyle(fontWeight: FontWeight.bold, fontSize: appFontSize * 2, color: _bmiTextColor())),
+              TextSpan(text: "Argi Candri - 268894", style: TextStyle(fontSize: appFontSize * 1.5, color: Theme.of(context).textTheme.bodyText1.color)),
+            ]),
+          ))
+        ]));
   }
 }
