@@ -7,8 +7,6 @@ class History extends StatefulWidget {
   _HistoryState createState() => _HistoryState();
 }
 
-
-
 class _HistoryState extends State<History> {
   var validEntries = [];
   final VALID_MEASUREMENTS_LIMIT = 10;
@@ -20,7 +18,7 @@ class _HistoryState extends State<History> {
         title: const Text('History'),
       ),
       body: ListView.separated(
-        itemCount: images.length,
+        itemCount: validEntries.length,
         shrinkWrap: true,
         padding: EdgeInsets.all(5),
         scrollDirection: Axis.vertical,
@@ -28,7 +26,7 @@ class _HistoryState extends State<History> {
         itemBuilder: (BuildContext context, int index) {
           return Card(
             child: ListTile(
-              title: Text("BMI ${validEntries[index]['bmi]}"),
+              title: Text("BMI ${validEntries[index]['bmi']}"),
               subtitle: Text("Height: $validEntries[index]['height] - Weight: $validEntries[index]['weight']"),
             ),
           );
