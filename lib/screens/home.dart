@@ -60,10 +60,10 @@ class _HomeState extends State<Home> {
               text: TextSpan(
                   text: 'Measurement unit',
                   style: (TextStyle(
-                    fontSize: fontSize,
-                    color: Colors.black,
+                    fontSize: fontSize * .75,
                   ))),
             ),
+            SizedBox(height: spacing * 2),
             ListTile(
               title: const Text('Metric'),
               leading: Radio<UnitOptions>(
