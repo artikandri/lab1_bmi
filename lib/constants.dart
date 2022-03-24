@@ -3,5 +3,5 @@ class Constants {
     "appTitle": "Author",
     "title": "Lab 1 Task\n\n",
     "author": "Argi Candri - 268894",
-  }
+  };
 }
