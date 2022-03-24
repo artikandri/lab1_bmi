@@ -28,6 +28,8 @@ class _HomeState extends State<Home> {
   String height = "";
   String bmi = "";
 
+  final bmiUtil = BMI();
+
   var validEntries = [];
   Color bmiTextColor = Colors.black;
 
@@ -148,7 +150,7 @@ class _HomeState extends State<Home> {
                       style: TextStyle(
                         fontSize: appFontSize * 3,
                         fontWeight: FontWeight.bold,
-                        color: getBmiTextColor(bmi),
+                        color: bmiUtil.getBmiTextColor(bmi),
                       ),
                       recognizer: TapGestureRecognizer()
                         ..onTap = () {
@@ -235,7 +237,7 @@ class _HomeState extends State<Home> {
         hasValidationError = false;
         isLoading = false;
 
-        bmi = getBmi(originalHeight, originalWeight, isMetric);
+        bmi = bmiUtil.getBmi(originalHeight, originalWeight, isMetric);
       });
       _addNewBmiEntry(height, weight, bmi);
       _weightController.clear();

@@ -11,6 +11,7 @@ class History extends StatefulWidget {
 
 class _HistoryState extends State<History> {
   var validEntries = [];
+  final bmiUtil = BMI();
   final VALID_MEASUREMENTS_LIMIT = 10;
 
   @override
@@ -62,8 +63,8 @@ class _HistoryState extends State<History> {
   }
 
   String _descriptionText(entry) {
-    int bmiCategory = getBmiCategory(entry['bmi']);
-    return "${getBmiDescriptionFromCategory(bmiCategory)}";
+    int bmiCategory = bmiUtil.getBmiCategory(entry['bmi']);
+    return "${bmiUtil.getBmiDescriptionFromCategory(bmiCategory)}";
   }
 
   _getValidEntries(context) async {

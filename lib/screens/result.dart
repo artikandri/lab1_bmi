@@ -6,6 +6,7 @@ import "../styling.dart";
 class Result extends StatelessWidget {
   Result(this.bmiResult);
   final BmiResult bmiResult;
+  final bmiUtil = BMI();
 
   String _bmiHeight() {
     String unit = bmiResult.isMetric ? "cm" : "ft";
@@ -22,12 +23,12 @@ class Result extends StatelessWidget {
   }
 
   Color _bmiTextColor() {
-    return getBmiTextColor(bmiResult.bmi);
+    return bmiUtil.getBmiTextColor(bmiResult.bmi);
   }
 
   String _bmiCategoryText() {
-    int bmiCategory = getBmiCategory(bmiResult.bmi);
-    return getBmiDescriptionFromCategory(bmiCategory);
+    int bmiCategory = bmiUtil.getBmiCategory(bmiResult.bmi);
+    return bmiUtil.getBmiDescriptionFromCategory(bmiCategory);
   }
 
   @override
