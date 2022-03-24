@@ -53,14 +53,13 @@ class _HomeState extends State<Home> {
     return new Column(
       children: <Widget>[
         Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             RichText(
               textAlign: TextAlign.left,
               text: TextSpan(
                 text: 'Measurement unit',
-                style: TextStyle(
-                  fontSize: fontSize,
-                ),
+                style: DefaultTextStyle.of(context).style,
               ),
             ),
             ListTile(
