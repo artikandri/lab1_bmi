@@ -1,5 +1,5 @@
-name: lab_1_268894_argi_bmi
-description: Lab 1 Task - Argi Candri -  268894
+name: lab1_bmi_argi
+description: Lab 1 Task - Argi Candri - 268894
 
 # The following defines the version and build number for your application.
 # A version number is three numbers separated by dots, like 1.2.43
@@ -22,6 +22,8 @@ dependencies:
     sdk: flutter
 
 dev_dependencies:
+  integration_test:
+    sdk: flutter
   flutter_test:
     sdk: flutter
 
