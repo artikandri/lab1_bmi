@@ -54,7 +54,7 @@ class _HomeState extends State<Home> {
         Column(
           children: <Widget>[
             RichText(
-              textAlign: TextAlign.center,
+              textAlign: TextAlign.left,
               text: TextSpan(
                 text: 'Measurement unit',
                 style: DefaultTextStyle.of(context).style,
