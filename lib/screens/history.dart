@@ -22,13 +22,15 @@ class _HistoryState extends State<History> {
       body: ListView.separated(
         itemCount: validEntries.length,
         shrinkWrap: true,
-        padding: EdgeInsets.all(appSpacing * 2),
+        padding: EdgeInsets.all(appSpacing),
         scrollDirection: Axis.vertical,
         separatorBuilder: (BuildContext, index) {
           return Divider(height: 1);
         },
         itemBuilder: (BuildContext context, int index) {
           return Card(
+              child: Padding(
+            padding: EdgeInsets.all(appSpacing),
             child: ListTile(
                 title: Text("BMI ${validEntries[index]['bmi']}", style: TextStyle(fontSize: appFontSize * 1.25, fontWeight: FontWeight.bold)),
                 subtitle: RichText(
@@ -40,7 +42,7 @@ class _HistoryState extends State<History> {
                     ],
                   ),
                 )),
-          );
+          ));
         },
       ),
     );
