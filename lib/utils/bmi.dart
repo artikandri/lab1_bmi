@@ -81,10 +81,10 @@ Color getBmiTextColor(String bmi) {
       color = Colors.red[50];
       break;
     case 4:
-      color = Colors.red[600];
+      color = Colors.redAccent;
       break;
     case 5:
-      color = Colors.black;
+      color = Colors.red;
       break;
   }
   return color;

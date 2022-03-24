@@ -41,7 +41,7 @@ class Result extends StatelessWidget {
               child: RichText(
             textAlign: TextAlign.center,
             text: TextSpan(children: [
-              TextSpan(text: "${_bmiScore()}\n", style: TextStyle(fontWeight: FontWeight.bold, fontSize: appFontSize * 3, color: _bmiTextColor())),
+              TextSpan(text: "${_bmiScore()}\n", style: TextStyle(fontWeight: FontWeight.bold, fontSize: appFontSize * 4, color: _bmiTextColor())),
               TextSpan(text: "You are ${_bmiCategoryText()}\n\n", style: TextStyle(fontSize: appFontSize * 2, color: Theme.of(context).textTheme.bodyText1.color)),
               TextSpan(text: "Height: ${_bmiHeight()} and Weight: ${_bmiWeight()}\n", style: TextStyle(fontSize: appFontSize * 1.5, color: Theme.of(context).textTheme.bodyText1.color)),
             ]),
