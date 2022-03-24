@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 import "../utils/bmi.dart";
+import "../styling.dart";
 
 class History extends StatefulWidget {
   @override
@@ -29,13 +30,13 @@ class _HistoryState extends State<History> {
         itemBuilder: (BuildContext context, int index) {
           return Card(
             child: ListTile(
-                title: Text("BMI ${validEntries[index]['bmi']}", style: TextStyle(fontWeight: FontWeight.bold)),
+                title: Text("BMI ${validEntries[index]['bmi']}", style: TextStyle(fontSize: appFontSize * 1.25, fontWeight: FontWeight.bold)),
                 subtitle: RichText(
                   text: TextSpan(
                     text: "Height: ${_heightText(validEntries[index])} - Weight: ${_weightText(validEntries[index])}\n\n",
                     style: DefaultTextStyle.of(context).style,
                     children: [
-                      TextSpan(text: '${_descriptionText(validEntries[index])}', style: TextStyle(fontWeight: FontWeight.bold)),
+                      TextSpan(text: '${_descriptionText(validEntries[index])}', style: TextStyle(fontSize: appFontSize * 1, fontWeight: FontWeight.bold)),
                     ],
                   ),
                 )),
