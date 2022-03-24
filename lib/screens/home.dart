@@ -58,7 +58,9 @@ class _HomeState extends State<Home> {
               textAlign: TextAlign.left,
               text: TextSpan(
                 text: 'Measurement unit',
-                style: DefaultTextStyle.of(context).style,
+                style: TextStyle(
+                  fontSize: fontSize,
+                ),
               ),
             ),
             ListTile(
@@ -95,6 +97,7 @@ class _HomeState extends State<Home> {
             ),
           ],
         ),
+        SizedBox(height: spacing * 2),
         TextFormField(
             decoration: new InputDecoration(labelText: 'Height (${isMetric ? "cm" : "ft"})', hintText: 'Enter your height'),
             controller: _heightController,
