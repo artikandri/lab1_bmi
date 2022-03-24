@@ -61,6 +61,7 @@ class _HomeState extends State<Home> {
                   text: 'Measurement unit',
                   style: (TextStyle(
                     fontSize: fontSize,
+                    color: Colors.black,
                   ))),
             ),
             ListTile(
