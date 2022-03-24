@@ -1,13 +1,18 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-
 import 'package:lab1_bmi/utils/bmi.dart';
-import 'package:lab1_bmi/styling.dart';
 
 void main() {
-  test('Metric, Zero Values, BMICategory Test', () {
+  test('getBmiCategory', () {
+    // underweight
+    BMI testBMI = new BMI();
+    var actual = testBMI.getBmiCategory("17");
     var expected = 0;
-    BMI testBMI = new BMI(false, 0, 0);
-    var actual = testBMI.BMICategory;
+    expect(actual, expected);
+
+    // normal
+    BMI testBMI = new BMI();
+    var actual = testBMI.getBmiCategory("19");
+    var expected = 1;
     expect(actual, expected);
   });
+}

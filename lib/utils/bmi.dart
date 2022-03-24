@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import '../utils/unit_converter.dart';
 
 class BMI {
+  double score = 0;
+
   String getBmi(String originalHeight, String originalWeight, bool isMetric) {
     bool hasEnteredHeight = originalHeight.length > 0;
     bool hasEnteredWeight = originalWeight.length > 0;
 
-    double score = 0;
     if (hasEnteredHeight && hasEnteredWeight) {
       double heightInMetricsMeter = isMetric ? double.parse(originalHeight) / 100 : feetToMeter(double.parse(originalHeight));
       double weightInMetricsKilo = isMetric ? double.parse(originalWeight) : poundToKilogram(double.parse(originalWeight));

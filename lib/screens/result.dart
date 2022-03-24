@@ -6,7 +6,7 @@ import "../styling.dart";
 class Result extends StatelessWidget {
   Result(this.bmiResult);
   final BmiResult bmiResult;
-  final bmiUtil = BMI();
+  final BMI bmiUtil = BMI();
 
   String _bmiHeight() {
     String unit = bmiResult.isMetric ? "cm" : "ft";
