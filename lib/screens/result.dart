@@ -37,13 +37,14 @@ class Result extends StatelessWidget {
           title: const Text('Result'),
         ),
         body: Column(mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.center, children: [
-          RichText(
+          Center(
+              child: RichText(
             text: TextSpan(children: [
               TextSpan(text: "${_bmiScore()}\n", style: TextStyle(fontWeight: FontWeight.bold, fontSize: appFontSize * 3, color: _bmiTextColor())),
               TextSpan(text: "You are ${_bmiCategoryText()}\n", style: TextStyle(fontSize: appFontSize * 2, color: Theme.of(context).textTheme.bodyText1.color)),
               TextSpan(text: "Height: ${_bmiHeight()} and Weight: ${_bmiWeight()}\n", style: TextStyle(color: Theme.of(context).textTheme.bodyText1.color)),
             ]),
-          )
+          ))
         ]));
   }
 }
