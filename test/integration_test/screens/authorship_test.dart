@@ -19,8 +19,11 @@ void main() {
       var appTitle = find.text(Constants.authorship['appTitle']);
       expect(appTitle, findsOneWidget);
 
-      // verify author text is rendered
+      // verify title  is rendered
       expect(find.byWidgetPredicate((Widget widget) => widget is RichText && widget.text.toPlainText() == Constants.authorship['appTitle']), findsOneWidget);
+
+      // verify author is rendered
+      expect(find.byWidgetPredicate((Widget widget) => widget is RichText && widget.text.toPlainText() == Constants.authorship['author']), findsOneWidget);
     });
   });
 }
