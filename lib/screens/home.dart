@@ -56,7 +56,6 @@ class _HomeState extends State<Home> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             RichText(
-              textAlign: TextAlign.left,
               text: TextSpan(
                   text: 'Measurement unit',
                   style: (TextStyle(
@@ -99,8 +98,8 @@ class _HomeState extends State<Home> {
             ),
           ],
         ),
+        SizedBox(height: spacing * 2),
         RichText(
-          textAlign: TextAlign.left,
           text: TextSpan(
               text: 'Measurements',
               style: (TextStyle(
