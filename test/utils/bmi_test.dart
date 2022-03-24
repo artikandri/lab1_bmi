@@ -3,16 +3,12 @@ import 'package:lab1_bmi/utils/bmi.dart';
 
 void main() {
   test('getBmiCategory', () {
-    // underweight
     BMI testBMI = new BMI();
-    var actual = testBMI.getBmiCategory("17");
-    var expected = 0;
-    expect(actual, expected);
-
-    // normal
-    BMI testBMI = new BMI();
-    var actual = testBMI.getBmiCategory("19");
-    var expected = 1;
-    expect(actual, expected);
+    for (var i = 0; i <= 5; i++) {
+      // underweight > obese: 16 21 26 31 36 41
+      var actual = testBMI.getBmiCategory("${16 + i * 5}");
+      var expected = i;
+      expect(actual, expected);
+    }
   });
 }
