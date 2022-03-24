@@ -55,8 +55,7 @@ class _HomeState extends State<Home> {
           children: <Widget>[
             RichText(
               text: TextSpan(
-                text: 'Unit ',
-                style: DefaultTextStyle.of(context).style,
+                text: 'Measurement unit',
               ),
             ),
             ListTile(
