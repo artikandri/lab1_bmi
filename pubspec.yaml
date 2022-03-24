@@ -1,5 +1,5 @@
-name: lab_1_268894_argi_bmi
-description: Lab 1 Task - Argi Candri -  268894
+name: lab1_bmi
+description: BMI Calculator
 
 # The following defines the version and build number for your application.
 # A version number is three numbers separated by dots, like 1.2.43
@@ -22,8 +22,15 @@ dependencies:
     sdk: flutter
 
 dev_dependencies:
+  mockito: ^5.1.0
+  integration_test:
+    sdk: flutter
   flutter_test:
     sdk: flutter
+  flutter_driver:
+    sdk: flutter
+  bdd_widget_test: ^1.2.1
+  build_runner: ^2.1.8
 
 
 # For information on the generic Dart part of this file, see the

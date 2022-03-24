@@ -1,10 +1,14 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
+import 'package:flutter/gestures.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-import 'authorship.dart';
+import "../data_templates/bmi_result.dart";
 import '../utils/unit_converter.dart';
+import '../components/home/validators.dart';
+import '../models/home.dart';
+import "../styling.dart";
+
+import 'result.dart';
 
 enum UnitOptions { metric, imperial }
 
@@ -22,7 +26,9 @@ class _HomeState extends State<Home> {
 
   String weight = "";
   String height = "";
-  String bmi = "0.00";
+  String bmi = "";
+
+  BMI bmiUtil = BMI();
 
   var validEntries = [];
   Color bmiTextColor = Colors.black;
@@ -30,40 +36,35 @@ class _HomeState extends State<Home> {
   final TextEditingController _weightController = TextEditingController();
   final TextEditingController _heightController = TextEditingController();
 
-  @override
+  UnitOptions _option = UnitOptions.metric;
+
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: new Scaffold(
-        appBar: AppBar(
-          title: Text("BMI Calculator"),
-          actions: <Widget>[
-            PopupMenuButton<int>(
-                onSelected: (item) => onClickPopupMenuButton(item, context),
-                itemBuilder: (context) => [
-                      PopupMenuItem<int>(value: 0, child: Text("Author")),
-                      PopupMenuItem<int>(value: 1, child: Text("History")),
-                    ])
-          ],
-        ),
-        body: new SingleChildScrollView(
-          child: new Container(
-            margin: new EdgeInsets.all(15.0),
+    return WillPopScope(
+      onWillPop: () async {
+        _clearData();
+        return Future.value(true);
+      },
+      child: Container(
+        child: Align(
+            alignment: Alignment.centerLeft,
             child: new Form(
               key: _key,
               autovalidate: hasValidationError,
-              child: FormUI(),
-            ),
-          ),
-        ),
+              child: BmiForm(),
+            )),
       ),
     );
   }
 
-  UnitOptions _option = UnitOptions.metric;
-
-  Widget FormUI() {
+  Widget BmiForm() {
     return new Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
+        RichText(
+          text: TextSpan(text: 'Measurement unit', style: (TextStyle(color: Theme.of(context).textTheme.bodyText1.color, fontSize: appFontSize))),
+        ),
+        SizedBox(height: appSpacing * 2),
         Column(
           children: <Widget>[
             ListTile(
@@ -100,8 +101,13 @@ class _HomeState extends State<Home> {
             ),
           ],
         ),
-        new TextFormField(
-            decoration: new InputDecoration(hintText: 'Height (${isMetric ? "cm" : "ft"})'),
+        SizedBox(height: appSpacing * 2),
+        RichText(
+          text: TextSpan(text: 'Measurements', style: (TextStyle(color: Theme.of(context).textTheme.bodyText1.color, fontSize: appFontSize))),
+        ),
+        SizedBox(height: appSpacing * 2),
+        TextFormField(
+            decoration: new InputDecoration(labelText: 'Height (${isMetric ? "cm" : "ft"})', hintText: 'Enter your height'),
             controller: _heightController,
             keyboardType: TextInputType.numberWithOptions(decimal: !isMetric, signed: false),
             validator: validateHeight,
@@ -110,8 +116,9 @@ class _HomeState extends State<Home> {
                 height = val;
               });
             }),
-        new TextFormField(
-            decoration: new InputDecoration(hintText: 'Weight (${isMetric ? "kg" : "lbs"})'),
+        SizedBox(height: appSpacing * 2),
+        TextFormField(
+            decoration: new InputDecoration(labelText: 'Weight (${isMetric ? "kg" : "lbs"})', hintText: 'Enter your weight'),
             controller: _weightController,
             keyboardType: TextInputType.numberWithOptions(decimal: !isMetric, signed: false),
             validator: validateWeight,
@@ -120,115 +127,47 @@ class _HomeState extends State<Home> {
                 weight = val;
               });
             }),
-        new SizedBox(height: 15.0),
-        new RaisedButton(
-          onPressed: isLoading ? null : _validateForm,
-          child: new Text('Count'),
-        ),
-        new SizedBox(height: 30.0),
-        new Text(
-          "${bmi}",
-          style: TextStyle(
-            fontSize: 50.0,
-            fontWeight: FontWeight.bold,
-            color: getBmiTextColor(double.parse(bmi)),
+        SizedBox(height: appSpacing * 2),
+        ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            primary: isLoading ? Colors.grey : Colors.blue,
+            minimumSize: Size.fromHeight(appSpacing * 6),
           ),
-        )
+          onPressed: isLoading ? null : _validateForm,
+          child: Text(
+            'Count',
+            style: TextStyle(fontSize: appFontSize * 1),
+          ),
+        ),
+        SizedBox(height: appSpacing * 4),
+        Center(
+            child: RichText(
+                softWrap: true,
+                textAlign: TextAlign.justify,
+                text: TextSpan(children: [
+                  TextSpan(
+                      text: "${bmi}",
+                      style: TextStyle(
+                        fontSize: appFontSize * 3,
+                        fontWeight: FontWeight.bold,
+                        color: bmiUtil.getBmiTextColor(bmi),
+                      ),
+                      recognizer: TapGestureRecognizer()
+                        ..onTap = () {
+                          if (!height.isEmpty && !weight.isEmpty && !hasValidationError) {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (BuildContext context) => new Result(BmiResult(height, weight, bmi, isMetric)),
+                              ),
+                            ).then((value) {
+                              _clearData();
+                            });
+                          }
+                        })
+                ]))),
       ],
     );
-  }
-
-  String validateHeight(String value) {
-    String pattern = r'^-?(?!.{12})\d+(?:\.\d+)?$';
-    RegExp regExp = new RegExp(pattern);
-
-    value = value.replaceAll("[^\\d.]", "");
-    if (value.length == 0) {
-      return "height is required";
-    } else if (double.parse(value) <= 0) {
-      return "height must be more than zero ";
-    } else if (!regExp.hasMatch(value)) {
-      return "height must be digits";
-    }
-    return null;
-  }
-
-  Color getBmiTextColor(double bmi) {
-    // 0: Underweight, 1: Normal, 2: Overweight, 3: Obese, 4: Severely Obese, 5: Morbid Obese
-    int bmiCategory = getBmiCategory(bmi);
-    Color color = Colors.black;
-    switch (bmiCategory) {
-      case 0:
-        color = Colors.yellow;
-        break;
-      case 1:
-        color = Colors.green;
-        break;
-      case 2:
-        color = Colors.deepOrange;
-        break;
-      case 3:
-        color = Colors.red[50];
-        break;
-      case 4:
-        color = Colors.red[300];
-        break;
-      case 5:
-        color = Colors.grey;
-        break;
-    }
-    return color;
-  }
-
-  String validateWeight(String value) {
-    String pattern = r'^-?(?!.{12})\d+(?:\.\d+)?$';
-    RegExp regExp = new RegExp(pattern);
-    value = value.replaceAll("[^\\d.]", "");
-    if (value.length == 0) {
-      return "weight is required";
-    } else if (double.parse(value) <= 0) {
-      return "weight must be more than zero ";
-    } else if (!regExp.hasMatch(value)) {
-      return "weight must be digits";
-    }
-    return null;
-  }
-
-  String getBmi() {
-    String originalHeight = _heightController.text.replaceAll("[^\\d.]", "");
-    String originalWeight = _weightController.text.replaceAll("[^\\d.]", "");
-
-    bool hasEnteredHeight = originalHeight.length > 0;
-    bool hasEnteredWeight = originalWeight.length > 0;
-
-    double bmi = 0;
-    if (hasEnteredHeight && hasEnteredWeight) {
-      double heightInMetricsMeter = isMetric ? double.parse(originalHeight) / 100 : feetToMeter(double.parse(originalHeight));
-      double weightInMetricsKilo = isMetric ? double.parse(originalWeight) : poundToKilogram(double.parse(originalWeight));
-
-      bmi = weightInMetricsKilo / (heightInMetricsMeter * heightInMetricsMeter);
-    }
-
-    return bmi.toStringAsFixed(2);
-  }
-
-  int getBmiCategory(double bmi) {
-    // 0: Underweight, 1: Normal, 2: Overweight, 3: Obese, 4: Severely Obese, 5: Morbid Obese
-
-    int result = 0;
-    if (bmi < 18.5)
-      result = 0;
-    else if (bmi >= 18.5 && bmi <= 24.9)
-      result = 1;
-    else if (bmi >= 25 && bmi <= 29.9)
-      result = 2;
-    else if (bmi >= 30 && bmi <= 34.9)
-      result = 3;
-    else if (bmi >= 35 && bmi <= 39.9)
-      result = 4;
-    else if (bmi >= 40) result = 5;
-
-    return result;
   }
 
   _updateHeight() {
@@ -238,7 +177,7 @@ class _HomeState extends State<Home> {
       double newHeight = isMetric ? feetToCentimeter(oldHeight) : centimeterToFeet(oldHeight);
 
       _heightController.value = _heightController.value.copyWith(
-        text: newHeight.toStringAsFixed(2),
+        text: isMetric ? newHeight.round().toString() : newHeight.toStringAsFixed(2),
         selection: TextSelection.collapsed(offset: newHeight.toStringAsFixed(2).length),
       );
     }
@@ -251,7 +190,7 @@ class _HomeState extends State<Home> {
       double newWeight = isMetric ? poundToKilogram(oldWeight) : kilogramToPound(oldWeight);
 
       _weightController.value = _weightController.value.copyWith(
-        text: newWeight.toStringAsFixed(2),
+        text: isMetric ? newWeight.round().toString() : newWeight.toStringAsFixed(2),
         selection: TextSelection.collapsed(offset: newWeight.toStringAsFixed(2).length),
       );
     }
@@ -263,42 +202,51 @@ class _HomeState extends State<Home> {
       validEntries.add({
         "height": height,
         "weight": weight,
+        "isMetric": isMetric,
         "bmi": bmi
       });
       prefs.setString('validEntries', json.encode(validEntries));
     });
   }
 
+  _clearData() {
+    setState(() {
+      hasValidationError = false;
+      isLoading = false;
+
+      isMetric = true;
+      weight = "";
+      height = "";
+      bmi = "";
+    });
+  }
+
   _validateForm() {
     isLoading = true;
+
     if (_key.currentState.validate()) {
       _key.currentState.save();
+
+      String originalHeight = _heightController.text.replaceAll("[^\\d.]", "");
+      String originalWeight = _weightController.text.replaceAll("[^\\d.]", "");
+
+      originalHeight = originalHeight.isEmpty ? "0" : originalHeight;
+      originalWeight = originalWeight.isEmpty ? "0" : originalWeight;
+
       setState(() {
         hasValidationError = false;
         isLoading = false;
 
-        bmi = getBmi();
-        _addNewBmiEntry(height, weight, bmi);
+        bmi = bmiUtil.getBmi(originalHeight, originalWeight, isMetric);
       });
+      _addNewBmiEntry(height, weight, bmi);
+      _weightController.clear();
+      _heightController.clear();
     } else {
       setState(() {
         hasValidationError = true;
         isLoading = false;
       });
     }
-  }
-}
-
-onClickPopupMenuButton(int item, BuildContext context) {
-  switch (item) {
-    case 0:
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => const Authorship()),
-      );
-      break;
-    case 1:
-      Navigator.of(context).pushNamed("/history");
-      break;
   }
 }

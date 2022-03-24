@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
+import "../utils/bmi.dart";
+import "../styling.dart";
 
 class History extends StatefulWidget {
   @override
@@ -9,6 +11,7 @@ class History extends StatefulWidget {
 
 class _HistoryState extends State<History> {
   var validEntries = [];
+  BMI bmiUtil = BMI();
   final VALID_MEASUREMENTS_LIMIT = 10;
 
   @override
@@ -18,24 +21,30 @@ class _HistoryState extends State<History> {
         title: const Text('History'),
       ),
       body: ListView.separated(
-        padding: const EdgeInsets.all(8),
         itemCount: validEntries.length,
-        itemBuilder: (BuildContext context, int index) {
-          return Container(
-            height: 50,
-            child: RichText(
-              text: TextSpan(
-                style: TextStyle(color: Colors.black, fontSize: 16.0),
-                children: <TextSpan>[
-                  TextSpan(text: '${validEntries[index]["height"]} - '),
-                  TextSpan(text: '${validEntries[index]["weight"]} - '),
-                  TextSpan(text: '${validEntries[index]["bmi"]}')
-                ],
-              ),
-            ),
-          );
+        shrinkWrap: true,
+        padding: EdgeInsets.all(appSpacing),
+        scrollDirection: Axis.vertical,
+        separatorBuilder: (BuildContext, index) {
+          return Divider(height: 1);
         },
-        separatorBuilder: (BuildContext context, int index) => const Divider(),
+        itemBuilder: (BuildContext context, int index) {
+          return Card(
+              child: Padding(
+            padding: EdgeInsets.all(appSpacing),
+            child: ListTile(
+                title: Text("BMI ${validEntries[index]['bmi']}", style: TextStyle(fontSize: appFontSize * 1.25, fontWeight: FontWeight.bold)),
+                subtitle: RichText(
+                  text: TextSpan(
+                    text: "Height: ${_heightText(validEntries[index])} - Weight: ${_weightText(validEntries[index])}\n\n",
+                    style: DefaultTextStyle.of(context).style,
+                    children: [
+                      TextSpan(text: '${_descriptionText(validEntries[index])}', style: TextStyle(fontSize: appFontSize * 1, fontWeight: FontWeight.bold)),
+                    ],
+                  ),
+                )),
+          ));
+        },
       ),
     );
   }
@@ -43,6 +52,19 @@ class _HistoryState extends State<History> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) => _getValidEntries(context));
+  }
+
+  String _heightText(entry) {
+    return "${entry['height']} ${entry['isMetric'] ? 'cm' : 'ft'}";
+  }
+
+  String _weightText(entry) {
+    return "${entry['weight']} ${entry['isMetric'] ? 'kg' : 'lbs'}";
+  }
+
+  String _descriptionText(entry) {
+    int bmiCategory = bmiUtil.getBmiCategory(entry['bmi']);
+    return "${bmiUtil.getBmiDescriptionFromCategory(bmiCategory)}";
   }
 
   _getValidEntries(context) async {
