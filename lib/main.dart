@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'screens/index.dart';
+import "styling.dart";
 
 void main() {
   runApp(MaterialApp(
@@ -32,9 +33,9 @@ class _MainPageState extends State<MainPage> {
                     ])
           ],
         ),
-        body: new SingleChildScrollView(
+        body: new SizedBox.expand(
           child: new Container(
-            margin: new EdgeInsets.all(15.0),
+            margin: new EdgeInsets.all(appSpacing * 2),
             child: Home(),
           ),
         ),

@@ -56,14 +56,9 @@ class _HomeState extends State<Home> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             RichText(
-              text: TextSpan(
-                  text: 'Measurement unit',
-                  style: (TextStyle(
-                    color: Theme.of(context).textTheme.bodyText1.color,
-                    fontSize: fontSize,
-                  ))),
+              text: TextSpan(text: 'Measurement unit', style: (TextStyle(color: Theme.of(context).textTheme.bodyText1.color, fontSize: appFontSize))),
             ),
-            SizedBox(height: spacing * 2),
+            SizedBox(height: appSpacing * 2),
             ListTile(
               title: const Text('Metric'),
               leading: Radio<UnitOptions>(
@@ -98,14 +93,9 @@ class _HomeState extends State<Home> {
             ),
           ],
         ),
-        SizedBox(height: spacing * 2),
+        SizedBox(height: appSpacing * 2),
         RichText(
-          text: TextSpan(
-              text: 'Measurements',
-              style: (TextStyle(
-                color: Theme.of(context).textTheme.bodyText1.color,
-                fontSize: fontSize,
-              ))),
+          text: TextSpan(text: 'Measurements', style: (TextStyle(color: Theme.of(context).textTheme.bodyText1.color, fontSize: appFontSize))),
         ),
         TextFormField(
             decoration: new InputDecoration(labelText: 'Height (${isMetric ? "cm" : "ft"})', hintText: 'Enter your height'),
@@ -117,7 +107,7 @@ class _HomeState extends State<Home> {
                 height = val;
               });
             }),
-        SizedBox(height: spacing * 2),
+        SizedBox(height: appSpacing * 2),
         TextFormField(
             decoration: new InputDecoration(labelText: 'Weight (${isMetric ? "kg" : "lbs"})', hintText: 'Enter your weight'),
             controller: _weightController,
@@ -128,25 +118,25 @@ class _HomeState extends State<Home> {
                 weight = val;
               });
             }),
-        SizedBox(height: spacing * 2),
+        SizedBox(height: appSpacing * 2),
         ElevatedButton(
           style: ElevatedButton.styleFrom(
             primary: isLoading ? Colors.grey : Colors.blue,
-            minimumSize: Size.fromHeight(spacing * 6),
+            minimumSize: Size.fromHeight(appSpacing * 6),
           ),
           onPressed: isLoading ? null : _validateForm,
           child: Text(
             'Count',
-            style: TextStyle(fontSize: fontSize * 1),
+            style: TextStyle(fontSize: appFontSize * 1),
           ),
         ),
-        new SizedBox(height: spacing * 4),
+        new SizedBox(height: appSpacing * 4),
         new RichText(
             text: TextSpan(children: [
           TextSpan(
               text: "${bmi}",
               style: TextStyle(
-                fontSize: fontSize * 3,
+                fontSize: appFontSize * 3,
                 fontWeight: FontWeight.bold,
                 color: getBmiTextColor(bmi),
               ),

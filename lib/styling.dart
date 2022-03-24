@@ -1,2 +1,2 @@
-double fontSize = 16.0;
-double spacing = 8.0;
+double appFontSize = 16.0;
+double appSpacing = 8.0;
