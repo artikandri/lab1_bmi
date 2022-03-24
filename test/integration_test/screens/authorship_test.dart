@@ -18,8 +18,11 @@ void main() {
       var appTitle = find.text(Constants.authorship['appTitle']);
       expect(appTitle, findsOneWidget);
 
-      final richTextWidget = tester.element(richTextFinder).widget as RichText;
-      print(richTextWidget.text.children);
+      var author = find.text(
+        Constants.authorship['author'],
+        findRichText: true,
+      );
+      expect(appTitle, findsOneWidget);
     });
   });
 }
