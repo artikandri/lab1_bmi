@@ -99,7 +99,6 @@ class _HomeState extends State<Home> {
             ),
           ],
         ),
-        SizedBox(height: spacing * 2),
         RichText(
           textAlign: TextAlign.left,
           text: TextSpan(
